@@ -63,28 +63,28 @@ class SnailShellSearch implements Callable<int[]> {
       up_limit=length_matrix-1; //At the beginning, acess all the lines in this movement, except the first
   
       while (i < number_of_values){
-        for (int j=0; j < right_limit; j++){
+        for (int j=0; j <= right_limit; j++){
           snail_shell[i++]=matrix[x][y++];
         }
   
         x++;
         right_limit--;
   
-        for (int j=0; j < bottom_limit; j++){
+        for (int j=0; j <= bottom_limit; j++){
           snail_shell[i++]=matrix[x++][y];
         }
   
         y--;
         bottom_limit--;
   
-        for (int j=0; j < left_limit; j++) {
+        for (int j=0; j <= left_limit; j++) {
           snail_shell[i++]=matrix[x][y--];
         }
   
         x--;
         left_limit--;
   
-        for (int j=0; j < up_limit; j++) {
+        for (int j=0; j <= up_limit; j++) {
           snail_shell[i++]=matrix[x--][y];
         }
         
