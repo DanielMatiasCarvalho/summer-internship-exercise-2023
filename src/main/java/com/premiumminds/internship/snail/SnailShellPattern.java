@@ -47,7 +47,11 @@ class SnailShellSearch implements Callable<int[]> {
       if (matrix[0].length==0) { // If the matrix is empty
         int[] response = new int[0];
         return response;
+      } else if (matrix[0].length==1){ // If the matrix as only an element
+        snail_shell[0]=matrix[0][0];
+        return snail_shell;
       };
+
       int i = 0; //Defines the number of values the program has been through
       int x=0, y=0; //Current position
   
@@ -65,27 +69,31 @@ class SnailShellSearch implements Callable<int[]> {
       while (i < number_of_values){
         for (int j=0; j <= right_limit; j++){
           snail_shell[i++]=matrix[x][y++];
+          if(i >= number_of_values) break;
         }
-  
+
         x++;
         right_limit--;
   
-        for (int j=0; j <= bottom_limit; j++){
+        for (int j=1; j <= bottom_limit; j++){
           snail_shell[i++]=matrix[x++][y];
+          if(i >= number_of_values) break;
         }
-  
+        
         y--;
         bottom_limit--;
   
-        for (int j=0; j <= left_limit; j++) {
+        for (int j=1; j <= left_limit; j++) {
           snail_shell[i++]=matrix[x][y--];
+          if(i >= number_of_values) break;
         }
-  
+        
         x--;
         left_limit--;
   
-        for (int j=0; j <= up_limit; j++) {
+        for (int j=1; j <= up_limit; j++) {
           snail_shell[i++]=matrix[x--][y];
+          if(i >= number_of_values) break;
         }
         
         y++;
