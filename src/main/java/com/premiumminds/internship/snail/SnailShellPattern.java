@@ -25,11 +25,14 @@ class SnailShellPattern implements ISnailShellPattern {
 
 }
 
+/**
+ * Created by DanielMatiasCarvalho on 02-06-2023.
+ */
 class SnailShellSearch implements Callable<int[]> {
 
-  int[][] matrix;
-  int[] snail_shell;
-  int number_of_values;
+  int[][] matrix; //The matrix with the values
+  int[] snail_shell;  //The array with the values, from the outer objects to the inner objects
+  int number_of_values; //Total number of values
 
     public SnailShellSearch(int[][] matrix_original) {
 
@@ -40,7 +43,11 @@ class SnailShellSearch implements Callable<int[]> {
 
     @Override
     public int[] call() {
-      int length_matrix=matrix.length;
+      int length_matrix=matrix.length; //Number of lines in the matrix
+      if (matrix[0].length==0) { // If the matrix is empty
+        int[] response = new int[0];
+        return response;
+      };
       int i = 0; //Defines the number of values the program has been through
       int x=0, y=0; //Current position
   
