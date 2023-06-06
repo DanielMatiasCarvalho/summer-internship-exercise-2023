@@ -54,6 +54,7 @@ class SnailShellSearch implements Callable<int[]> {
 
       int i = 0; //Defines the number of values the program has been through
       int x=0, y=0; //Current position
+      int flag=0;  //Flag if we have reached the end of the matriz;
   
       /*There are four types of movements, right, bottom, left and up. 
        * These variables define the limits of the amount os values 
@@ -69,33 +70,51 @@ class SnailShellSearch implements Callable<int[]> {
       while (i < number_of_values){
         for (int j=0; j <= right_limit; j++){
           snail_shell[i++]=matrix[x][y++];
-          if(i >= number_of_values) break;
+          if(i >= number_of_values) {
+            flag=1;
+            break;
+          }
         }
 
+        if (flag==1) break;
+
         x++;
+        y--;
         right_limit--;
   
         for (int j=1; j <= bottom_limit; j++){
           snail_shell[i++]=matrix[x++][y];
-          if(i >= number_of_values) break;
+          if(i >= number_of_values) {
+            flag=1;
+            break;
+          }
         }
         
+        if (flag==1) break;
         y--;
         bottom_limit--;
   
         for (int j=1; j <= left_limit; j++) {
           snail_shell[i++]=matrix[x][y--];
-          if(i >= number_of_values) break;
+          if(i >= number_of_values) {
+            flag=1;
+            break;
+          }
         }
         
+        if (flag==1) break;
         x--;
         left_limit--;
   
         for (int j=1; j <= up_limit; j++) {
           snail_shell[i++]=matrix[x--][y];
-          if(i >= number_of_values) break;
+          if(i >= number_of_values) {
+            flag=1;
+            break;
+          }
         }
         
+        if (flag==1) break;
         y++;
         up_limit--;
       }
